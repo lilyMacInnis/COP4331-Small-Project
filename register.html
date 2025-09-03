@@ -9,7 +9,7 @@
       <h1>Signup</h1>
 
       <span>First name:</span>
-      <input type="text" id="registerfname" />
+      <input type="text" id="registerfname"/>
 
       <span>Last name:</span>
       <input type="text" id="registerlname" />
@@ -20,16 +20,68 @@
       <span>Password:</span>
       <input type="password" id="registerPassword" />
 
-      <div id="passwordRequirements">
-        <span>*Password must include:</span>
-        <span>Between 3 and 20 characters.</span>
-        <span>At least one number and special character.</span>
+      <div>
+        <span id="fnRequirement" style="display: none;">*First name must include at least 1 character.</span>
+        <span id="lnRequirement" style="display: none;">*Last name must include at least 1 character.</span>
+        <span id="unRequirement" style="display: none;">*Username must include at least 1 character.</span>
       </div>
 
-      <button type="button" id="registerButton" onclick="">Create Account</button>
+      <div id="passwordRequirements">
+        <span>*Password must include:</span>
+        <span id="passLen">Between 3 and 20 characters.</span>
+        <span id="passComplexity">At least one number and special character.</span>
+      </div>
+
+      <button type="button" id="registerButton" onclick="checkRequirements()">Create Account</button>
 
       <span>*Already have an account?</span>
       <a href="login.html">Login</a>
     </div>
+
+    <script>
+      function checkRequirements(){
+        let isValid = true;
+        let nums = /\d/;
+        let specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+
+        if(document.getElementById("registerfname").value.trim() === ''){
+          document.getElementById("fnRequirement").style.display="block";
+          document.getElementById("registerfname").style="border-bottom: 2px solid red";
+          isValid=false;
+        }
+
+        if(document.getElementById("registerlname").value.trim() === ''){
+          document.getElementById("lnRequirement").style.display="block";
+          document.getElementById("registerlname").style="border-bottom: 2px solid red";
+          isValid=false;
+        }
+
+        if(document.getElementById("registerUsername").value.trim() === ''){
+          document.getElementById("unRequirement").style.display="block";
+          document.getElementById("registerUsername").style="border-bottom: 2px solid red";
+          isValid=false;
+        }
+
+        if(document.getElementById("registerPassword").value.length < 3 || 
+        document.getElementById("registerPassword").value.length > 20){
+          document.getElementById("passLen").style.color="red";
+          document.getElementById("registerPassword").style="border-bottom: 2px solid red";
+          isValid=false;
+        }
+
+        if(!nums.test(document.getElementById("registerPassword").value.trim()) || 
+        !specialChars.test(document.getElementById("registerPassword").value.trim())){
+          document.getElementById("passComplexity").style.color="red";
+          document.getElementById("registerPassword").style="border-bottom: 2px solid red";
+          isValid=false;
+        }
+
+        if(isValid){
+          return;
+        }else{
+          //doLogin();
+        }
+      }
+    </script>
   </body>
 </html>
