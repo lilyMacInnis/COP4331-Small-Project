@@ -46,34 +46,48 @@
 
         if(document.getElementById("registerfname").value.trim() === ''){
           document.getElementById("fnRequirement").style.display="block";
-          document.getElementById("registerfname").style="border-bottom: 2px solid red";
+          document.getElementById("registerfname").style="border:none; border-bottom: 2px solid red";
           isValid=false;
+        }else{
+          document.getElementById("fnRequirement").style.display="none";
+          document.getElementById("registerfname").style="border: none";
         }
 
         if(document.getElementById("registerlname").value.trim() === ''){
           document.getElementById("lnRequirement").style.display="block";
-          document.getElementById("registerlname").style="border-bottom: 2px solid red";
+          document.getElementById("registerlname").style="border:none; border-bottom: 2px solid red";
           isValid=false;
+        }else{
+          document.getElementById("lnRequirement").style.display="none";
+          document.getElementById("registerlname").style="border: none";
         }
 
         if(document.getElementById("registerUsername").value.trim() === ''){
           document.getElementById("unRequirement").style.display="block";
-          document.getElementById("registerUsername").style="border-bottom: 2px solid red";
+          document.getElementById("registerUsername").style="border:none; border-bottom: 2px solid red";
           isValid=false;
+        }else{
+          document.getElementById("unRequirement").style.display="none";
+          document.getElementById("registerUsername").style="border: none";
         }
 
         if(document.getElementById("registerPassword").value.length < 3 || 
         document.getElementById("registerPassword").value.length > 20){
           document.getElementById("passLen").style.color="red";
-          document.getElementById("registerPassword").style="border-bottom: 2px solid red";
+          document.getElementById("registerPassword").style="border:none; border-bottom: 2px solid red";
           isValid=false;
+        }else{
+          document.getElementById("passLen").style.color="#333b32";
+          document.getElementById("registerPassword").style="border: none";
         }
 
         if(!nums.test(document.getElementById("registerPassword").value.trim()) || 
         !specialChars.test(document.getElementById("registerPassword").value.trim())){
           document.getElementById("passComplexity").style.color="red";
-          document.getElementById("registerPassword").style="border-bottom: 2px solid red";
+          document.getElementById("registerPassword").style="border:none; border-bottom: 2px solid red";
           isValid=false;
+        }else{
+          document.getElementById("passComplexity").style.color="#333b32";
         }
 
         if(isValid){
