@@ -1,24 +1,39 @@
 <!DOCTYPE html> 
  <html lang="en"></html>
-  <head>
+ <head>
     <title>Contact Library Login</title>
+    <link rel="stylesheet" href="css/login.css"/>
+    <link rel="stylesheet" href="css/navbar.css"/>
   </head>
   <body>
-    <a href="index.html">Logo</a>  
-    
-    <div>
-      <h1>Login</h1>
+    <div class="navbar">
+      <a href="index.html"><img class="logo" src="images/book1.png" alt="logo"/></a>
 
-      <span>Username:</span>
-      <input type="text" id="loginName"/>
+      <div>
+        <button onclick="location.href = 'login.html';" class="navButtons">Login</button>
+        <button onclick="location.href = 'register.html';" class="navButtons">Signup</button>
+      </div>
+    </div>
 
-      <span>Password:</span>
-      <input type="password" id="loginPassword"/>
+    <div class="imgContainer">
+      <img class="loginBook" src="images/login_bg.png" alt="open book" />
+    </div>
 
-      <button type="button" id="loginButton" onclick="">Login</button>
+    <div class="loginContainer">
+      <div>
+        <h1>Login</h1>
 
-      <span>*Don't have an account?</span>
-      <a href="register.html">Signup</a>
+        <span>Username:</span>
+        <input type="text" class="loginName"/>
+
+        <span>Password:</span>
+        <input type="password" class="loginPassword"/>
+
+        <button type="button" class="loginButton" onclick="">Login</button>
+
+        <span>*Don't have an account?</span>
+        <a href="register.html">Signup</a>
+      </div>
     </div>
   </body>
 </html>

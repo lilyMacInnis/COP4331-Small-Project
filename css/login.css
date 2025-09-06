@@ -1,0 +1,35 @@
+body {
+  background-color: #6c3c30;
+}
+
+.imgContainer {
+  position: absolute;
+  z-index: -1;
+  width: 100vw;
+  height: 90vh;
+  //align-items: center;
+}
+
+.loginBook {
+  bottom: 0;
+  right: 0;
+  padding-left: 9rem;
+  padding-top: 3rem;
+  width: 75rem;
+}
+
+.loginContainer {
+  position: relative;
+  z-index: 1;
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginContainer div {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
