@@ -23,24 +23,27 @@
       <div>
         <h1>Signup</h1>
 
-        <div class="field">
+        <div class="field" id="registerfname">
           <span>First name:</span>
-          <input type="text" id="registerfname"/>
+          <input type="text" id="registerfnameInput"/>
         </div>
+        <span id="fnRequirement" style="display: none;">*First name must include at least 1 character.</span>
 
-        <div class="field">
+        <div class="field" id="registerlname">
           <span>Last name:</span>
-          <input type="text" id="registerlname" />
+          <input type="text" id="registerlnameInput" />
         </div>
+        <span id="lnRequirement" style="display: none;">*Last name must include at least 1 character.</span>
 
-        <div class="field">
+        <div class="field" id="registerUsername">
           <span>Username:</span>
-          <input type="text" id="registerUsername" />
+          <input type="text" id="registerUsernameInput" />
         </div>
+        <span id="unRequirement" style="display: none;">*Username must include at least 1 character.</span>
 
-        <div class="field">
+        <div class="field" id="registerPassword">
           <span>Password:</span>
-          <input type="password" id="registerPassword" />
+          <input type="password" id="registerPasswordInput" />
         </div>
 
         <div>
@@ -72,50 +75,59 @@
         let nums = /\d/;
         let specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 
-        if(document.getElementById("registerfname").value.trim() === ''){
+        if(document.getElementById("registerfnameInput").value.trim() === ''){
           document.getElementById("fnRequirement").style.display="block";
-          document.getElementById("registerfname").style="border:none; border-bottom: 2px solid red";
+          document.getElementById("registerfname").style="background-color: rgba(255,0,0,0.5);";
+          document.getElementById("registerfnameInput").style="background-color: rgba(255,0,0,0.1);";
           isValid=false;
         }else{
           document.getElementById("fnRequirement").style.display="none";
-          document.getElementById("registerfname").style="border: none";
+          document.getElementById("registerfname").style="background-color: rgba(0,0,0,0);";
+          document.getElementById("registerfnameInput").style="background-color: rgba(0,0,0,0);";
         }
 
-        if(document.getElementById("registerlname").value.trim() === ''){
+        if(document.getElementById("registerlnameInput").value.trim() === ''){
           document.getElementById("lnRequirement").style.display="block";
-          document.getElementById("registerlname").style="border:none; border-bottom: 2px solid red";
+          document.getElementById("registerlname").style="background-color: rgba(255,0,0,0.5);";
+          document.getElementById("registerlnameInput").style="background-color: rgba(255,0,0,0.1);";
           isValid=false;
         }else{
           document.getElementById("lnRequirement").style.display="none";
-          document.getElementById("registerlname").style="border: none";
+          document.getElementById("registerlname").style="background-color: rgba(0,0,0,0);";
+          document.getElementById("registerlnameInput").style="background-color: rgba(0,0,0,0);";
         }
 
-        if(document.getElementById("registerUsername").value.trim() === ''){
+        if(document.getElementById("registerUsernameInput").value.trim() === ''){
           document.getElementById("unRequirement").style.display="block";
-          document.getElementById("registerUsername").style="border:none; border-bottom: 2px solid red";
+          document.getElementById("registerUsername").style="background-color: rgba(255,0,0,0.5);";
+          document.getElementById("registerUsernameInput").style="background-color: rgba(255,0,0,0.1);";
           isValid=false;
         }else{
           document.getElementById("unRequirement").style.display="none";
-          document.getElementById("registerUsername").style="border: none";
+          document.getElementById("registerUsername").style="background-color: rgba(0,0,0,0);";
+          document.getElementById("registerUsernameInput").style="background-color: rgba(0,0,0,0);";
         }
 
-        if(document.getElementById("registerPassword").value.length < 3 || 
-        document.getElementById("registerPassword").value.length > 20){
-          document.getElementById("passLen").style.color="red";
-          document.getElementById("registerPassword").style="border:none; border-bottom: 2px solid red";
+        if(document.getElementById("registerPasswordInput").value.length < 3 || 
+        document.getElementById("registerPasswordInput").value.length > 20){
+          document.getElementById("passLen").style="background-color: rgba(255,0,0,0.5);";
+          document.getElementById("registerPassword").style="background-color: rgba(255,0,0,0.5);";
+          document.getElementById("registerPasswordInput").style="background-color: rgba(255,0,0,0.1);";
           isValid=false;
         }else{
-          document.getElementById("passLen").style.color="#333b32";
-          document.getElementById("registerPassword").style="border: none";
+          document.getElementById("passLen").style="background-color: rgba(0,0,0,0);";
+          document.getElementById("registerPassword").style="background-color: rgba(0,0,0,0);";
+          document.getElementById("registerPasswordInput").style="background-color: rgba(0,0,0,0);";
         }
 
-        if(!nums.test(document.getElementById("registerPassword").value.trim()) || 
-        !specialChars.test(document.getElementById("registerPassword").value.trim())){
-          document.getElementById("passComplexity").style.color="red";
-          document.getElementById("registerPassword").style="border:none; border-bottom: 2px solid red";
+        if(!nums.test(document.getElementById("registerPasswordInput").value.trim()) || 
+        !specialChars.test(document.getElementById("registerPasswordInput").value.trim())){
+          document.getElementById("passComplexity").style="background-color: rgba(255,0,0,0.5);";
+          document.getElementById("registerPassword").style="background-color: rgba(255,0,0,0.5);";
+          document.getElementById("registerPasswordInput").style="background-color: rgba(255,0,0,0.1);";
           isValid=false;
         }else{
-          document.getElementById("passComplexity").style.color="#333b32";
+          document.getElementById("passComplexity").style="background-color: rgba(0,0,0,0);";
         }
 
         if(isValid){

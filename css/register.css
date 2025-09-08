@@ -58,9 +58,10 @@ h1 {
   //display: flex;
   flex-direction: row !important;
   gap: 1vw;
-  padding-bottom: 1vw;
+  padding: 0.5vw;
+  margin: 0;
   width: 100% !important;
-  //align-items: center;
+  align-items: center;
   //flex: 1;
 }
 
@@ -77,6 +78,24 @@ h1 {
   width: 100%;
   font-size: 1.25vw;
   padding: 0.2vw;
+}
+
+#fnRequirement {
+  font-size: 1.1vw;
+  padding-left: 3vw;
+  color: red;
+}
+
+#lnRequirement {
+  font-size: 1.1vw;
+  padding-left: 3vw;
+  color: red;
+}
+
+#unRequirement {
+  font-size: 1.1vw;
+  padding-left: 3vw;
+  color: red;
 }
 
 .passwordRequirements {
