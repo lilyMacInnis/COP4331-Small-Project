@@ -115,3 +115,62 @@ h1 {
 .signupMsg a:hover {
   color: #86915b;
 }
+
+@media only screen and (max-width: 767px) {
+  .imgContainer {
+    height: 100vh;
+  }
+
+  .loginBook {
+    padding-left: 4vw;
+    width: 100vw;
+    max-width: 100vw;
+    height: 90vh;
+  }
+
+  .loginContainer {
+    width: 100vw;
+    height: 90vh;
+    padding-top: 6vh;
+  }
+
+  .loginContainer div {
+    gap: 0.6vh;
+    width: 70%;
+    padding-left: 3vh;
+  }
+
+  h1 {
+    font-size: 4vh;
+  }
+
+  .field {
+    gap: 1vh;
+    padding-bottom: 1vh;
+  }
+
+  .field span {
+    padding-right: 1vh;
+    font-size: 2vh;
+  }
+
+  .field input {
+    width: 100%;
+    font-size: 1.5vh;
+    padding: 0.2vh;
+  }
+
+  .loginButton {
+    font-size: 2vh;
+    font-weight: 600;
+    padding: 0.5vh 1vh;
+    margin-top: 1vh;
+  }
+
+  .signupMsg {
+    gap: 0.5vh;
+    width: 100% !important;
+    padding-top: 6vh;
+    font-size: 1.4vh;
+  }
+}

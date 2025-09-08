@@ -1,6 +1,7 @@
 <!DOCTYPE html> 
  <html lang="en"></html>
- <head>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Library Login</title>
     <link rel="stylesheet" href="css/login.css"/>
     <link rel="stylesheet" href="css/navbar.css"/>
@@ -16,7 +17,7 @@
     </div>
 
     <div class="imgContainer">
-      <img class="loginBook" src="images/login_bg.png" alt="open book" />
+      <img class="loginBook" id="loginBook" src="images/login_bg.png" alt="open book" />
     </div>
 
     <div class="loginContainer">
@@ -37,9 +38,26 @@
 
         <div class="signupMsg">
           <span>Don't have an account?</span>
-          <a href="register.html">Signup</a>
+          <a href="register.html">Signup.</a>
         </div>
       </div>
     </div>
+
+    <script>
+        function changeBgForMobile() {
+            let loginImage = document.getElementById('loginBook');
+            
+            if (window.innerWidth <= 768) {
+                loginImage.src = 'images/login_bg_mobile.png';
+            } else {
+                loginImage.src = 'images/login_bg.png';
+            }
+        }
+
+        window.addEventListener('load', changeBgForMobile);
+        
+        window.addEventListener('resize', changeBgForMobile);
+    </script>
+
   </body>
 </html>
