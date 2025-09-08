@@ -23,8 +23,8 @@ input {
 }
 
 .loginBook {
-  padding-left: 9rem;
-  padding-top: 3rem;
+  padding-left: 11vw;
+  padding-top: 4vw;
   width: 75rem;
   max-width: 90vw;
   height: auto;
@@ -35,21 +35,22 @@ input {
   z-index: 1;
   width: 100vw;
   height: 90vh;
+  padding-top: 6vw;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .loginContainer div {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.6vw;
   width: 45%;
   color: #34000b;
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 4vw;
   display: flex;
   justify-content: center;
 }
@@ -57,16 +58,16 @@ h1 {
 .field {
   //display: flex;
   flex-direction: row !important;
-  gap: 1rem;
-  padding-bottom: 1rem;
+  gap: 1vw;
+  padding-bottom: 1vw;
   width: 100% !important;
   //align-items: center;
   //flex: 1;
 }
 
 .field span {
-  padding-right: 1rem;
-  font-size: 1.4rem;
+  padding-right: 1vw;
+  font-size: 2vw;
 }
 
 .field input {
@@ -74,18 +75,19 @@ h1 {
   border: 1.5px solid #34000b;
   border-radius: 4px;
   width: 100%;
-  font-size: 1.2rem;
-  padding: 0.2rem;
+  font-size: 1.5vw;
+  padding: 0.2vw;
 }
 
 .loginButton {
   color: #eae3d0;
   background-color: #4f6b45;
-  font-size: 1.75rem;
+  font-size: 2vw;
+  font-weight: 600;
   border: none;
   border-radius: 8px;
-  padding: 0.5rem 1rem;
-  margin-top: 1rem;
+  padding: 0.5vw 1vw;
+  margin-top: 1vw;
   width: fit-content !important;
   align-self: center;
 }
@@ -96,10 +98,10 @@ h1 {
 
 .signupMsg {
   flex-direction: row !important;
-  gap: 0.5rem;
+  gap: 0.5vw;
   width: 100% !important;
-  padding-top: 5rem;
-  font-size: 1.1rem;
+  padding-top: 6vw;
+  font-size: 1.4vw;
 }
 
 .signupMsg a:visited {
