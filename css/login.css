@@ -27,7 +27,7 @@ input {
   padding-top: 4vw;
   width: 90vw;
   max-width: 90vw;
-  height: auto;
+  height: 90vh;
 }
 
 .loginContainer {
@@ -108,6 +108,10 @@ h1 {
   color: #34000b;
 }
 
+.signupMsg a:link {
+  color: #34000b;
+}
+
 .signupMsg a:hover {
-  color: #4f6b45;
+  color: #86915b;
 }
