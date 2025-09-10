@@ -151,9 +151,9 @@ h1 {
   }
 
   .signupBook {
-    padding-left: 4vw;
-    width: 100vw;
-    max-width: 100vw;
+    padding-left: 0vw;
+    width: 110vw;
+    //max-width: 100vw;
     height: 80vh;
   }
 
@@ -166,7 +166,8 @@ h1 {
   .signupContainer div {
     gap: 0.6vh;
     width: 70%;
-    padding-right: 6vh;
+    padding-right: 13vh;
+    padding-left: 2vw;
   }
 
   h1 {
@@ -176,7 +177,7 @@ h1 {
   .field {
     gap: 1vh;
     padding-bottom: 1vh;
-    padding-right: 0.5vh !important;
+    padding-right: 0.5vw !important;
     align-items: center !important;
   }
 
@@ -189,6 +190,8 @@ h1 {
     width: 100%;
     font-size: 1.5vh;
     padding: 0.2vh;
+    max-width: 45vw;
+    //margin-right: 3vw;
   }
 
   #fnRequirement {
