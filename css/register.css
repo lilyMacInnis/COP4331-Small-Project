@@ -176,6 +176,7 @@ h1 {
   .field {
     gap: 1vh;
     padding-bottom: 1vh;
+    padding-right: 0.5vh !important;
     align-items: center !important;
   }
 
