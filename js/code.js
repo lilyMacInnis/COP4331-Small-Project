@@ -78,11 +78,9 @@ function doLogout()
 function doRegister()
 {
     userId = 0;
-	firstName = "";
-	lastName = "";
 
-    let firstName = document.getElementById("registerfnameInput").value;
-    let lastName = document.getElementById("registerlnameInput").value;
+    firstName = document.getElementById("registerfnameInput").value;
+    lastName = document.getElementById("registerlnameInput").value;
     let user = document.getElementById("registerUsernameInput").value;
 	let password = document.getElementById("registerPasswordInput").value;
 
