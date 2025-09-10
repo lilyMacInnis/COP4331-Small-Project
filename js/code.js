@@ -74,3 +74,59 @@ function doLogout()
 	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 	window.location.href = "index.html";
 }
+
+function doRegister()
+{
+    userId = 0;
+	firstName = "";
+	lastName = "";
+
+    let firstName = document.getElementById("registerfnameInput").value;
+    let lastName = document.getElementById("registerlnameInput").value;
+    let user = document.getElementById("registerUsernameInput").value;
+	let password = document.getElementById("registerPasswordInput").value;
+
+    //var hash = md5( password );
+	
+	document.getElementById("signupResult").innerHTML = "";
+
+	//let tmp = {login:login,password:password};
+	let tmp = {
+        firstName: firstName,
+        lastName: lastName,
+        login: user,
+        password: password
+    };
+	let jsonPayload = JSON.stringify( tmp );
+	
+	let url = urlBase + '/Register.' + extension;
+
+    let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				let jsonObject = JSON.parse( xhr.responseText );
+				userId = jsonObject.id;
+		
+				document.getElementById("signupResult").innerHTML = "User added";
+		
+				firstName = jsonObject.firstName;
+				lastName = jsonObject.lastName;
+
+				saveCookie();
+	
+				window.location.href = "contacts.html";
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("signupResult").innerHTML = err.message;
+	}
+}
