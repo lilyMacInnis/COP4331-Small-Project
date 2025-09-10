@@ -3,6 +3,8 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Library Login</title>
+    <script type="text/javascript" src="js/md5.js"></script>
+    <script type="text/javascript" src="js/code.js"></script>
     <link rel="stylesheet" href="css/login.css"/>
     <link rel="stylesheet" href="css/navbar.css"/>
   </head>
@@ -26,15 +28,17 @@
 
         <div class="field">
           <span>Username:</span>
-          <input type="text" class="loginName"/>
+          <input type="text" class="loginName" id="loginName"/>
         </div>
 
         <div class="field">
           <span>Password:</span>
-          <input type="password" class="loginPassword"/>
+          <input type="password" class="loginPassword" id="loginPassword"/>
         </div>
 
-        <button type="button" class="loginButton" onclick="">Login</button>
+        <span id="loginResult"></span>
+
+        <button type="button" class="loginButton" onclick="doLogin();">Login</button>
 
         <div class="signupMsg">
           <span>Don't have an account?</span>
