@@ -17,8 +17,8 @@ function doLogin()
 	
 	document.getElementById("loginResult").innerHTML = "";
 
-	let tmp = {login:login,password:password};
-	//var tmp = {login:login,password:hash};
+	//let tmp = {login:login,password:password};
+	let tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
 	
 	let url = urlBase + '/Login.' + extension;
@@ -84,7 +84,7 @@ function doRegister()
     let user = document.getElementById("registerUsernameInput").value;
 	let password = document.getElementById("registerPasswordInput").value;
 
-    //var hash = md5( password );
+    let hash = md5( password );
 	
 	document.getElementById("signupResult").innerHTML = "";
 
@@ -93,7 +93,7 @@ function doRegister()
         FirstName: firstName,
         LastName: lastName,
         Login: user,
-        Password: password
+        Password: hash
     };
 	let jsonPayload = JSON.stringify( tmp );
 	
@@ -108,10 +108,6 @@ function doRegister()
 		{
 			if (this.readyState == 4) 
 			{
-				if (this.status == 409) {
-                    document.getElementById("signupResult").innerHTML = "User already exists";
-                    return;
-                }
                 
                 if(this.status == 200){
                     let jsonObject = JSON.parse( xhr.responseText );
