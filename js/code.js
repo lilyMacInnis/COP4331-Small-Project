@@ -90,10 +90,10 @@ function doRegister()
 
 	//let tmp = {login:login,password:password};
 	let tmp = {
-        firstName: firstName,
-        lastName: lastName,
-        login: user,
-        password: password
+        FirstName: firstName,
+        FastName: lastName,
+        Login: user,
+        Password: password
     };
 	let jsonPayload = JSON.stringify( tmp );
 	
