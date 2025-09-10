@@ -91,7 +91,7 @@ function doRegister()
 	//let tmp = {login:login,password:password};
 	let tmp = {
         FirstName: firstName,
-        FastName: lastName,
+        LastName: lastName,
         Login: user,
         Password: password
     };
