@@ -19,7 +19,6 @@ input {
   height: 90vh;
   display: flex;
   justify-content: center;
-  //align-items: center;
 }
 
 .loginBook {
@@ -56,13 +55,10 @@ h1 {
 }
 
 .field {
-  //display: flex;
   flex-direction: row !important;
   gap: 1vw;
   padding-bottom: 1vw;
   width: 100% !important;
-  //align-items: center;
-  //flex: 1;
 }
 
 .field span {
