@@ -13,7 +13,6 @@ body {
 }
 
 .homeBook {
-  //padding-left: 11vw;
   padding-top: 4vw;
   width: 50vw;
   max-width: 90vw;
@@ -86,4 +85,49 @@ body {
 
 .loginSignupMsg a:hover {
   color: #86915b;
+}
+
+@media only screen and (max-width: 767px) {
+  .imgContainer {
+    padding-top: 2vh;
+  }
+
+  .homeBook {
+    width: 95vw;
+    max-width: 100vw;
+    height: 60vh;
+  }
+
+  .homeContainer {
+    width: 100vw;
+    height: 90vh;
+    padding-top: 4vw;
+  }
+
+  .homeContainer div {
+    padding-right: 4.5vh;
+    padding-top: 4vh;
+    gap: 0.6vh;
+  }
+
+  .welcMsg {
+    font-size: 2.5vh;
+    padding-bottom: 0.5vh;
+  }
+
+  .title {
+    padding: 2vh 11vh !important;
+  }
+
+  .title span {
+    font-size: 7vh;
+  }
+
+  .loginSignupMsg {
+    gap: 0.5vh;
+    width: 70vw !important;
+    padding: 0vh !important;
+    padding-top: 2vh !important;
+    font-size: 4vw;
+  }
 }

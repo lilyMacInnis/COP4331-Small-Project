@@ -78,53 +78,53 @@
 
         if(document.getElementById("registerfnameInput").value.trim() === ''){
           document.getElementById("fnRequirement").style.display="block";
-          document.getElementById("registerfname").style="background-color: rgba(255,0,0,0.5);";
+          document.getElementById("registerfname").style="background-color: rgba(255,0,0,0.5); padding-bottom: 0.3vh;";
           document.getElementById("registerfnameInput").style="background-color: rgba(255,0,0,0.1);";
           isValid=false;
         }else{
           document.getElementById("fnRequirement").style.display="none";
-          document.getElementById("registerfname").style="background-color: rgba(0,0,0,0);";
+          document.getElementById("registerfname").style="background-color: rgba(0,0,0,0); padding-bottom: 1vh;";
           document.getElementById("registerfnameInput").style="background-color: rgba(0,0,0,0);";
         }
 
         if(document.getElementById("registerlnameInput").value.trim() === ''){
           document.getElementById("lnRequirement").style.display="block";
-          document.getElementById("registerlname").style="background-color: rgba(255,0,0,0.5);";
+          document.getElementById("registerlname").style="background-color: rgba(255,0,0,0.5); padding-bottom: 0.3vh;";
           document.getElementById("registerlnameInput").style="background-color: rgba(255,0,0,0.1);";
           isValid=false;
         }else{
           document.getElementById("lnRequirement").style.display="none";
-          document.getElementById("registerlname").style="background-color: rgba(0,0,0,0);";
+          document.getElementById("registerlname").style="background-color: rgba(0,0,0,0); padding-bottom: 1vh;";
           document.getElementById("registerlnameInput").style="background-color: rgba(0,0,0,0);";
         }
 
         if(document.getElementById("registerUsernameInput").value.trim() === ''){
           document.getElementById("unRequirement").style.display="block";
-          document.getElementById("registerUsername").style="background-color: rgba(255,0,0,0.5);";
+          document.getElementById("registerUsername").style="background-color: rgba(255,0,0,0.5); padding-bottom: 0.3vh;";
           document.getElementById("registerUsernameInput").style="background-color: rgba(255,0,0,0.1);";
           isValid=false;
         }else{
           document.getElementById("unRequirement").style.display="none";
-          document.getElementById("registerUsername").style="background-color: rgba(0,0,0,0);";
+          document.getElementById("registerUsername").style="background-color: rgba(0,0,0,0); padding-bottom: 1vh;";
           document.getElementById("registerUsernameInput").style="background-color: rgba(0,0,0,0);";
         }
 
         if(document.getElementById("registerPasswordInput").value.length < 3 || 
         document.getElementById("registerPasswordInput").value.length > 20){
           document.getElementById("passLen").style="background-color: rgba(255,0,0,0.5);";
-          document.getElementById("registerPassword").style="background-color: rgba(255,0,0,0.5);";
+          document.getElementById("registerPassword").style="background-color: rgba(255,0,0,0.5); padding-bottom: 0.3vh;";
           document.getElementById("registerPasswordInput").style="background-color: rgba(255,0,0,0.1);";
           isValid=false;
         }else{
           document.getElementById("passLen").style="background-color: rgba(0,0,0,0);";
-          document.getElementById("registerPassword").style="background-color: rgba(0,0,0,0);";
+          document.getElementById("registerPassword").style="background-color: rgba(0,0,0,0); padding-bottom: 1vh;";
           document.getElementById("registerPasswordInput").style="background-color: rgba(0,0,0,0);";
         }
 
         if(!nums.test(document.getElementById("registerPasswordInput").value.trim()) || 
         !specialChars.test(document.getElementById("registerPasswordInput").value.trim())){
           document.getElementById("passComplexity").style="background-color: rgba(255,0,0,0.5);";
-          document.getElementById("registerPassword").style="background-color: rgba(255,0,0,0.5);";
+          document.getElementById("registerPassword").style="background-color: rgba(255,0,0,0.5); padding-bottom: 0.3vh;";
           document.getElementById("registerPasswordInput").style="background-color: rgba(255,0,0,0.1);";
           isValid=false;
         }else{
