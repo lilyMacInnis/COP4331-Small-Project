@@ -106,19 +106,26 @@ function doRegister()
 	{
 		xhr.onreadystatechange = function() 
 		{
-			if (this.readyState == 4 && this.status == 200) 
+			if (this.readyState == 4) 
 			{
-				let jsonObject = JSON.parse( xhr.responseText );
-				userId = jsonObject.id;
-		
-				document.getElementById("signupResult").innerHTML = "User added";
-		
-				firstName = jsonObject.firstName;
-				lastName = jsonObject.lastName;
+				if (this.status == 409) {
+                    document.getElementById("signupResult").innerHTML = "User already exists";
+                    return;
+                }
+                
+                if(this.status == 200){
+                    let jsonObject = JSON.parse( xhr.responseText );
+                    userId = jsonObject.id;
+            
+                    document.getElementById("signupResult").innerHTML = "User added";
+            
+                    firstName = jsonObject.firstName;
+                    lastName = jsonObject.lastName;
 
-				saveCookie();
-	
-				window.location.href = "contacts.html";
+                    saveCookie();
+        
+                    window.location.href = "contacts.html";
+                }
 			}
 		};
 		xhr.send(jsonPayload);
