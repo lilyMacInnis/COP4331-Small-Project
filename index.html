@@ -3,18 +3,56 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Library</title>
+    <link rel="stylesheet" href="css/navbar.css"/>
+    <link rel="stylesheet" href="css/index.css"/>
   </head>
   <body>
-      <a href="index.html">Logo</a>
-      <p>Welcome to Your</p>
-      <h1>Contact Library</h1>
+    <div class="navbar">
+      <a href="index.html"><img class="logo" src="images/book1.png" alt="logo"/></a>
 
       <div>
-        <a href="login.html">Login</a>
-        <p>or</p>
-        <a href="register.html">Sign up</a>
-        <p> to create contacts.</p>
+        <button onclick="location.href = 'login.html';" class="navButtons">Login</button>
+        <button onclick="location.href = 'register.html';" class="navButtons">Signup</button>
       </div>
+    </div>
+
+    <div class="imgContainer">
+      <img class="homeBook" id="homeBook" src="images/home_bg.png" alt="book" />
+    </div>
+
+    <div class="homeContainer">
+      <div>
+        <span class="welcMsg">Welcome to Your</span>
+        
+        <div class="title">
+          <span>Contact</span>
+          <span>Library</span>
+        </div>
+
+        <div class="loginSignupMsg">
+          <a href="login.html">Login</a>
+          <span>or</span>
+          <a href="register.html">Sign up</a>
+          <span> to create contacts.</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+        function changeBgForMobile() {
+            let homeImage = document.getElementById('homeBook');
+            
+            if (window.innerWidth <= 768) {
+                homeImage.src = 'images/home_bg_mobile.png';
+            } else {
+                homeImage.src = 'images/home_bg.png';
+            }
+        }
+
+        window.addEventListener('load', changeBgForMobile);
+        
+        window.addEventListener('resize', changeBgForMobile);
+    </script>
 
   </body>
 </html>

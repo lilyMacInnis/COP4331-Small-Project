@@ -1,0 +1,89 @@
+body {
+  background-color: #6c3c30;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.imgContainer {
+  position: absolute;
+  z-index: -1;
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+}
+
+.homeBook {
+  //padding-left: 11vw;
+  padding-top: 4vw;
+  width: 50vw;
+  max-width: 90vw;
+  height: 90vh;
+}
+
+.homeContainer {
+  position: relative;
+  z-index: 1;
+  width: 100vw;
+  height: 90vh;
+  padding-top: 4vw;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.homeContainer div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-right: 4.5vw;
+  padding-top: 4vw;
+  gap: 0.6vw;
+  width: 45%;
+  color: #34000b;
+}
+
+.welcMsg {
+  font-size: 2vw;
+  padding-bottom: 0.5vw;
+  color: #eae3d0;
+}
+
+.title {
+  background-color: #86915b;
+  display: flex;
+  justify-content: center;
+  align-items: center !important;
+  padding: 2vw 7vw !important;
+}
+
+.title span {
+  font-size: 7vw;
+  font-weight: 700;
+  color: #eae3d0;
+}
+
+.loginSignupMsg {
+  flex-direction: row !important;
+  gap: 0.5vw;
+  width: 100% !important;
+  padding: 0vw !important;
+  padding-top: 2vw !important;
+  font-size: 2vw;
+}
+
+.loginSignupMsg span {
+  color: #eae3d0;
+}
+
+.loginSignupMsg a:visited {
+  color: #eae3d0;
+}
+
+.loginSignupMsg a:link {
+  color: #eae3d0;
+}
+
+.loginSignupMsg a:hover {
+  color: #86915b;
+}
