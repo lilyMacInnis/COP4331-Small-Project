@@ -116,6 +116,12 @@ h1 {
   color: #86915b;
 }
 
+#loginResult {
+  padding-left: 3vw;
+  color: red;
+  font-size: 1.5vw;
+}
+
 @media only screen and (max-width: 767px) {
   body {
     background-image: url("../images/bg_mobile.png");
@@ -176,5 +182,10 @@ h1 {
     width: 100% !important;
     padding-top: 6vh;
     font-size: 1.4vh;
+  }
+
+  #loginResult {
+    padding-left: 3vh;
+    font-size: 1.5vh;
   }
 }
