@@ -178,10 +178,14 @@ function deleteContact(fName, lName, id){
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
     try{
-        if(this.readyState == 4 && this.status == 200){
-            console.log("Deleted");
+        xhr.onreadystatechange = function()
+        {
+            if(this.readyState == 4 && this.status == 200){
+                console.log("Deleted");
+            }
+            xhr.send(jsonPayload);
         }
-        xhr.send(jsonPayload);
+        
     } catch(err){
         console.log("Error in delete: "+ err.message);
     }
