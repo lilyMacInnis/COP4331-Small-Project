@@ -183,9 +183,8 @@ function deleteContact(fName, lName, id){
             if(this.readyState == 4 && this.status == 200){
                 console.log("Deleted");
             }
-            xhr.send(jsonPayload);
         }
-        
+        xhr.send(jsonPayload);
     } catch(err){
         console.log("Error in delete: "+ err.message);
     }
