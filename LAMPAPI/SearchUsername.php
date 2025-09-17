@@ -25,11 +25,11 @@
 		
 		if( $searchCount == 0 )
 		{
-			returnWithError( "No Records Found" );
+			returnWithError( "" );
 		}
 		else
 		{
-			returnWithInfo( $searchResults );
+			returnWithInfo( "Username is taken" );
 		}
 		
 		$stmt->close();
