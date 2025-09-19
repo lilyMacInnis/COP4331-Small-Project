@@ -100,6 +100,12 @@ h1 {
   color: red;
 }
 
+#signupResult {
+  font-size: 1.5 vw;
+  color: red;
+  padding-left: 3vw;
+}
+
 .passwordRequirements {
   font-size: 1.1vw;
 }
@@ -214,6 +220,11 @@ h1 {
 
   #unRequirement {
     font-size: 1.1vh;
+    padding-left: 3vh;
+  }
+
+  #signupResult {
+    font-size: 1.5 vh;
     padding-left: 3vh;
   }
 
