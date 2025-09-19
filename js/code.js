@@ -116,7 +116,13 @@ function doRegister()
 	
 	document.getElementById("signupResult").innerHTML = "";
 
-	//let tmp = {login:login,password:password};
+	let userExists = checkUserExists(user);
+
+	if(userExists){
+		document.getElementById("signupResult").innerHTML = "*User Already Exists";
+		return;
+	}
+
 	let tmp = {
         FirstName: firstName,
         LastName: lastName,
@@ -134,22 +140,19 @@ function doRegister()
 	{
 		xhr.onreadystatechange = function() 
 		{
-			if (this.readyState == 4) 
+			if (this.readyState == 4 && this.status == 200) 
 			{
-                
-                if(this.status == 200){
-                    let jsonObject = JSON.parse( xhr.responseText );
-                    userId = jsonObject.id;
-            
-                    document.getElementById("signupResult").innerHTML = "User added";
-            
-                    firstName = jsonObject.firstName;
-                    lastName = jsonObject.lastName;
+                let jsonObject = JSON.parse( xhr.responseText );
+				userId = jsonObject.id;
+		
+				document.getElementById("signupResult").innerHTML = "User added";
+		
+				firstName = jsonObject.firstName;
+				lastName = jsonObject.lastName;
 
-                    saveCookie();
-        
-                    window.location.href = "contacts.html";
-                }
+				saveCookie();
+	
+				window.location.href = "contacts.html";
 			}
 		};
 		xhr.send(jsonPayload);
@@ -158,6 +161,39 @@ function doRegister()
 	{
 		document.getElementById("signupResult").innerHTML = err.message;
 	}
+}
+
+function checkUserExists (user){
+	let retVal = false;
+	let tmp = {login: user};
+	let jsonPayload = JSON.stringify(tmp);
+	let url = urlBase + '/SearchUsername' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try{
+        xhr.onreadystatechange = function()
+        {
+            if(this.readyState == 4 && this.status == 200){
+                let jsonObject = JSON.parse(xhr.responseText);
+
+				if(jsonObject.results && jsonObject.results.length > 0){
+					retVal = true;
+				} else{
+					retVal = false;
+				}
+            }
+        }
+        xhr.send(jsonPayload);
+    } catch(err){
+        console.log("Error in searchUser: "+ err.message);
+		document.getElementById("signupResult").innerHTML = err.message;
+    }
+
+	return retVal;
+
 }
 
 function deleteContact(fName, lName, id){
