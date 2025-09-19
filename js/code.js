@@ -116,54 +116,53 @@ function doRegister()
 	
 	document.getElementById("signupResult").innerHTML = "";
 
-	let userExists = checkUserExists(user);
+	checkUserExists(user, function(userExists){
+		if(userExists){
+			document.getElementById("signupResult").innerHTML = "*User Already Exists";
+		} else{
+			let tmp = {
+				FirstName: firstName,
+				LastName: lastName,
+				Login: user,
+				Password: hash
+			};
+			let jsonPayload = JSON.stringify( tmp );
+			
+			let url = urlBase + '/Register.' + extension;
 
-	if(userExists){
-		document.getElementById("signupResult").innerHTML = "*User Already Exists";
-		return;
-	}
-
-	let tmp = {
-        FirstName: firstName,
-        LastName: lastName,
-        Login: user,
-        Password: hash
-    };
-	let jsonPayload = JSON.stringify( tmp );
-	
-	let url = urlBase + '/Register.' + extension;
-
-    let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
+			let xhr = new XMLHttpRequest();
+			xhr.open("POST", url, true);
+			xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+			try
 			{
-                let jsonObject = JSON.parse( xhr.responseText );
-				userId = jsonObject.id;
-		
-				document.getElementById("signupResult").innerHTML = "User added";
-		
-				firstName = jsonObject.firstName;
-				lastName = jsonObject.lastName;
+				xhr.onreadystatechange = function() 
+				{
+					if (this.readyState == 4 && this.status == 200) 
+					{
+						let jsonObject = JSON.parse( xhr.responseText );
+						userId = jsonObject.id;
+				
+						document.getElementById("signupResult").innerHTML = "User added";
+				
+						firstName = jsonObject.firstName;
+						lastName = jsonObject.lastName;
 
-				saveCookie();
-	
-				window.location.href = "contacts.html";
+						saveCookie();
+			
+						window.location.href = "contacts.html";
+					}
+				};
+				xhr.send(jsonPayload);
 			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("signupResult").innerHTML = err.message;
-	}
+			catch(err)
+			{
+				document.getElementById("signupResult").innerHTML = err.message;
+			}
+		}
+	});
 }
 
-function checkUserExists (user){
+function checkUserExists (user, callback){
 	let retVal = false;
 	let tmp = {login: user};
 	let jsonPayload = JSON.stringify(tmp);
@@ -184,6 +183,8 @@ function checkUserExists (user){
 				} else{
 					retVal = false;
 				}
+
+				callback(retVal);
             }
         }
         xhr.send(jsonPayload);
@@ -191,8 +192,6 @@ function checkUserExists (user){
         console.log("Error in searchUser: "+ err.message);
 		document.getElementById("signupResult").innerHTML = err.message;
     }
-
-	return retVal;
 
 }
 
