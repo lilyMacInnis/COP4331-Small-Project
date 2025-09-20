@@ -14,7 +14,7 @@ try {
     $password = "your_db_password";
     $dbname = "COP4331";
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = new mysqli("localhost", "andres", "sharkboy4878", "COP4331");
 
     if ($conn->connect_error) {
         throw new Exception("Connection failed: " . $conn->connect_error);
