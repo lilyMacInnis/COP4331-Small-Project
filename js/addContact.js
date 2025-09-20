@@ -128,6 +128,8 @@ function handleCreateContact()
             // Only process when request is complete
             if (this.readyState == 4 && this.status == 200) {
                console.log("Contact has been added: "+ jsonPayload);
+
+               window.location.href = "contacts.html";
             }
         };
         
