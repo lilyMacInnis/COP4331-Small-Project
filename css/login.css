@@ -65,7 +65,7 @@ h1 {
   width: 100% !important;
 }
 
-.field span {
+.field label {
   padding-right: 1vw;
   font-size: 2vw;
 }
@@ -159,7 +159,7 @@ h1 {
     padding-bottom: 1vh;
   }
 
-  .field span {
+  .field label {
     padding-right: 1vh;
     font-size: 2vh;
   }
