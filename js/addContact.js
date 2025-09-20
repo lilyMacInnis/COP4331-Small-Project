@@ -3,6 +3,9 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // Phone validation regex (flexible for various formats)
 const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
 
+const urlBase = 'http://cop4331projectdomain.xyz/LAMPAPI';
+const extension = 'php';
+
 function validateField(fieldId, inputId, errorId, validationFn, errorMessage) {
     const input = document.getElementById(inputId);
     const field = document.getElementById(fieldId);
@@ -118,38 +121,39 @@ async function handleCreateContact() {
         Phone: document.getElementById('createPhoneInput').value.trim(),
         UserID: getUserId() // Gets user ID from localStorage
     };
-    
-    try {
-        const response = await fetch('AddContact.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(contactData)
-        });
-        
-        const result = await response.json();
-        
-        if (response.ok && result.success) {
-            showMessage('successMessage', 'Contact created successfully!');
-            // Clear the form
-            document.getElementById('contactForm').reset();
-            // Optionally redirect after success
-            setTimeout(() => {
+
+	let jsonPayload = JSON.stringify(contactData);
+	
+	let url = urlBase + '/AddContact.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				showMessage('successMessage', 'Contact created successfully!');
+                // Clear the form
+                document.getElementById('contactForm').reset();
                 window.location.href = 'contacts.html';
-            }, 2000);
-        } else {
-            // Handle specific field errors
-            if (result.field) {
-                handleServerFieldError(result.field, result.error);
-            } else {
-                showMessage('generalError', result.error || 'Failed to create contact.', true);
+			}else {
+                if (result.field) {
+                    handleServerFieldError(result.field, result.error);
+                } else {
+                    showMessage('generalError', result.error || 'Failed to create contact.', true);
+                }
             }
-        }
-    } catch (error) {
-        console.error('Error creating contact:', error);
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(error)
+	{
+		console.error('Error creating contact:', error);
         showMessage('generalError', 'Network error. Please try again.', true);
-    } finally {
+	}finally {
         // Re-enable button
         button.textContent = originalText;
         button.disabled = false;
