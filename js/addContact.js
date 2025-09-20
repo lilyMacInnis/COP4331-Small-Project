@@ -122,38 +122,90 @@ function handleCreateContact() {
         UserID: getUserId() // Gets user ID from localStorage
     };
 
-	let jsonPayload = JSON.stringify(contactData);
-	
-	let url = urlBase + '/AddContact.' + extension;
+    let jsonPayload = JSON.stringify(contactData);
+    let url = urlBase + '/AddContact.' + extension;
 
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				showMessage('successMessage', 'Contact created successfully!');
-                // Clear the form
-                document.getElementById('contactForm').reset();
-                window.location.href = 'contacts.html';
-			}else {
-                if (result.field) {
-                    handleServerFieldError(result.field, result.error);
-                } else {
-                    showMessage('generalError', result.error || 'Failed to create contact.', true);
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    
+    try {
+        xhr.onreadystatechange = function() {
+            // Only process when request is complete
+            if (this.readyState == 4) {
+                // Re-enable button regardless of outcome
+                button.textContent = originalText;
+                button.disabled = false;
+                
+                try {
+                    if (this.status == 200) {
+                        // Parse the JSON response
+                        let result = JSON.parse(this.responseText);
+                        
+                        if (result.success) {
+                            showMessage('successMessage', 'Contact created successfully!');
+                            // Clear the form
+                            document.getElementById('contactForm').reset();
+                            // Redirect after success
+                            setTimeout(() => {
+                                window.location.href = 'contacts.html';
+                            }, 1500);
+                        } else {
+                            // Handle server-side validation errors
+                            if (result.field) {
+                                handleServerFieldError(result.field, result.error);
+                            } else {
+                                showMessage('generalError', result.error || 'Failed to create contact.', true);
+                            }
+                        }
+                    } else {
+                        // Handle HTTP error status codes
+                        if (this.status >= 400 && this.responseText) {
+                            try {
+                                let errorResult = JSON.parse(this.responseText);
+                                if (errorResult.field) {
+                                    handleServerFieldError(errorResult.field, errorResult.error);
+                                } else {
+                                    showMessage('generalError', errorResult.error || 'Server error occurred.', true);
+                                }
+                            } catch (parseError) {
+                                showMessage('generalError', `Server error (${this.status}).`, true);
+                            }
+                        } else {
+                            showMessage('generalError', `Network error (${this.status}).`, true);
+                        }
+                    }
+                } catch (parseError) {
+                    console.error('Error parsing response:', parseError);
+                    console.error('Raw response:', this.responseText);
+                    showMessage('generalError', 'Invalid response from server.', true);
                 }
             }
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(error)
-	{
-		console.error('Error creating contact:', error);
+        };
+        
+        // Handle network errors
+        xhr.onerror = function() {
+            button.textContent = originalText;
+            button.disabled = false;
+            console.error('Network error occurred');
+            showMessage('generalError', 'Network error. Please check your connection.', true);
+        };
+        
+        // Handle timeout
+        xhr.ontimeout = function() {
+            button.textContent = originalText;
+            button.disabled = false;
+            console.error('Request timed out');
+            showMessage('generalError', 'Request timed out. Please try again.', true);
+        };
+        
+        // Set timeout (30 seconds)
+        xhr.timeout = 30000;
+        
+        xhr.send(jsonPayload);
+    } catch(error) {
+        console.error('Error creating contact:', error);
         showMessage('generalError', 'Network error. Please try again.', true);
-	}finally {
         // Re-enable button
         button.textContent = originalText;
         button.disabled = false;
