@@ -268,6 +268,7 @@ function searchContacts()
                 let jsonObject = JSON.parse( xhr.responseText );
 
 				if(jsonObject.results.length > 0){
+					let count = 1;
 					jsonObject.results.forEach(contact => {
 						const card = document.createElement("div");
 						card.className = "book-card";
@@ -278,6 +279,13 @@ function searchContacts()
 							<div class="contact-info">Phone: ${contact.Phone}</div>
 							<div class="contact-info">Email: ${contact.Email}</div>
 						`;
+
+						if(count % 2 == 0){
+							const bookImg = card.querySelector('.book-img');
+            				bookImg.style.backgroundImage = 'url("../images/book2.png")';
+						};
+
+						count++;
 
 						resultsDiv.appendChild(card);
 					});
