@@ -98,7 +98,7 @@ function clearMessages() {
     document.getElementById('successMessage').style.display = 'none';
 }
 
-async function handleCreateContact() {
+function handleCreateContact() {
     clearMessages();
     
     // Validate form first
