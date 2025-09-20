@@ -1,7 +1,6 @@
 /* Form container styling */
 .form-container {
-  background-color: #f5f5dc; /* Light beige */
-  border: 2px solid #d4c4a0;
+  background-color: #eae3d0; /* Light beige */
   border-radius: 10px;
   padding: 30px;
   margin: 50px auto;
@@ -12,7 +11,7 @@
 
 .form-container h1 {
   text-align: center;
-  color: #8b4513;
+  color: #34000b;
   margin-bottom: 25px;
 }
 
@@ -25,13 +24,13 @@
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
-  color: #654321;
+  color: #34000b;
 }
 
 .field input {
   width: 100%;
   padding: 10px;
-  border: 2px solid #d4c4a0;
+  border: 2px solid #34000b;
   border-radius: 5px;
   font-size: 16px;
   box-sizing: border-box;
@@ -40,6 +39,7 @@
 .field input:focus {
   outline: none;
   border-color: #8b4513;
+  background-color: #f4f1e3;
 }
 
 /* Error message styling */
@@ -63,7 +63,7 @@
 .cancelButton {
   padding: 12px 25px;
   font-size: 16px;
-  border: none;
+  border: 2px solid #4f6b45;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
@@ -85,7 +85,7 @@
 }
 
 .cancelButton {
-  background-color: #fcfcfc;
+  background-color: #eae3d0;
   color: #4f6b45;
 }
 
