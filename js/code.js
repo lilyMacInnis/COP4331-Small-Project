@@ -253,6 +253,8 @@ function searchContacts()
 		userId: userId
 	};
 
+	let jsonPayload = JSON.stringify(payload);
+
 	let url = urlBase + '/SearchContacts.' + extension;
 
 	let xhr = new XMLHttpRequest();
