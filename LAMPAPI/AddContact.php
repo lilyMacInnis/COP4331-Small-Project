@@ -1,4 +1,3 @@
-<!-- Claude.ai used in development of this code -->
 <?php
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
@@ -8,6 +7,7 @@ header('Access-Control-Allow-Headers: Content-Type');
 $input = json_decode(file_get_contents('php://input'), true);
 
 try {
+    // Claude.ai used in development of this code
     // Database connection - USE SAME VALUES AS getUsers.php
     $servername = "localhost";
     $username = "your_db_username";
