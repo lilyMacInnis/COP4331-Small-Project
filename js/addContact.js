@@ -98,7 +98,8 @@ function clearMessages() {
     document.getElementById('successMessage').style.display = 'none';
 }
 
-function handleCreateContact() {
+function handleCreateContact()
+{
     clearMessages();
     
     // Validate form first
@@ -280,3 +281,13 @@ document.getElementById('createPhoneInput').addEventListener('blur', () => {
             return cleanPhone.length >= 10 && cleanPhone.length <= 15 && /^\d+$/.test(cleanPhone);
         }, '*Please enter a valid phone number (10-15 digits).');
 });
+
+function doLogout()
+{
+	userId = 0;
+	localStorage.setItem('userId', userId);
+	firstName = "";
+	lastName = "";
+	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+	window.location.href = "index.html";
+};
