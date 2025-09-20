@@ -75,32 +75,32 @@ function doLogout()
 	window.location.href = "index.html";
 }
 
-function searchContacts() {
-    const content = document.getElementById("searchText");
-    const selections = content.value.toUpperCase().split(' ');
-    const table = document.getElementById("contacts");
-    const tr = table.getElementsByTagName("tr");// Table Row
+// function searchContacts() {
+//     const content = document.getElementById("searchText");
+//     const selections = content.value.toUpperCase().split(' ');
+//     const table = document.getElementById("contacts");
+//     const tr = table.getElementsByTagName("tr");// Table Row
 
-    for (let i = 0; i < tr.length; i++) {
-        const td_fn = tr[i].getElementsByTagName("td")[0];// Table Data: First Name
-        const td_ln = tr[i].getElementsByTagName("td")[1];// Table Data: Last Name
+//     for (let i = 0; i < tr.length; i++) {
+//         const td_fn = tr[i].getElementsByTagName("td")[0];// Table Data: First Name
+//         const td_ln = tr[i].getElementsByTagName("td")[1];// Table Data: Last Name
 
-        if (td_fn && td_ln) {
-            const txtValue_fn = td_fn.textContent || td_fn.innerText;
-            const txtValue_ln = td_ln.textContent || td_ln.innerText;
-            tr[i].style.display = "none";
+//         if (td_fn && td_ln) {
+//             const txtValue_fn = td_fn.textContent || td_fn.innerText;
+//             const txtValue_ln = td_ln.textContent || td_ln.innerText;
+//             tr[i].style.display = "none";
 
-            for (selection of selections) {
-                if (txtValue_fn.toUpperCase().indexOf(selection) > -1) {
-                    tr[i].style.display = "";
-                }
-                if (txtValue_ln.toUpperCase().indexOf(selection) > -1) {
-                    tr[i].style.display = "";
-                }
-            }
-        }
-    }
-}
+//             for (selection of selections) {
+//                 if (txtValue_fn.toUpperCase().indexOf(selection) > -1) {
+//                     tr[i].style.display = "";
+//                 }
+//                 if (txtValue_ln.toUpperCase().indexOf(selection) > -1) {
+//                     tr[i].style.display = "";
+//                 }
+//             }
+//         }
+//     }
+// }
 
 
 function doRegister()
@@ -166,7 +166,7 @@ function checkUserExists (user, callback){
 	let retVal = false;
 	let tmp = {login: user};
 	let jsonPayload = JSON.stringify(tmp);
-	let url = urlBase + '/SearchUsername.' + extension;
+	let url = urlBase + '/SearchUsername' + extension;
 
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -225,4 +225,61 @@ function deleteContact(fName, lName, id){
     }
 
 
+}
+
+function searchContacts() {
+	const searchTerm = document.getElementById("searchInput").value.trim();
+	const errorMsg = document.getElementById("errorMsg");
+	const resultsDiv = document.getElementById("results");
+
+	// Clear previous results and errors
+	errorMsg.textContent = "";
+	resultsDiv.innerHTML = "";
+
+	if (!searchTerm) {
+	errorMsg.textContent = "Please enter a name to search.";
+	return;
+	}
+
+	// Example userId (replace with real value from login or localStorage)
+	const userId = localStorage.getItem("userId") || 1;
+
+	const payload = {
+	search: searchTerm,
+	userId: userId
+	};
+
+	fetch("searchcontact.php", {
+	method: "POST",
+	headers: {
+		"Content-Type": "application/json"
+	},
+	body: JSON.stringify(payload)
+	})
+	.then(response => response.json())
+	.then(data => {
+	if (data.error && data.error !== "") {
+		errorMsg.textContent = data.error;
+	} else if (data.results && data.results.length > 0) {
+		data.results.forEach(contact => {
+		const card = document.createElement("div");
+		card.className = "book-card";
+
+		card.innerHTML = `
+			<div class="book-img"></div>
+			<div class="contact-name">${contact.FirstName} ${contact.LastName}</div>
+			<div class="contact-info">Phone: ${contact.Phone}</div>
+			<div class="contact-info">Email: ${contact.Email}</div>
+		`;
+
+		resultsDiv.appendChild(card);
+		});
+	} else {
+		errorMsg.textContent = "No contacts found.";
+	}
+	})
+	.catch(error => {
+	console.error("Error:", error);
+	errorMsg.textContent = "An error occurred while fetching contacts.";
+	});
 }
