@@ -273,7 +273,7 @@ function searchContacts()
 						card.className = "book-card";
 
 						card.innerHTML = `
-							<div class="book-img"><img src="../images/book1.png" /></div>
+							<div class="book-img"></div>
 							<div class="contact-name">${contact.FirstName} ${contact.LastName}</div>
 							<div class="contact-info">Phone: ${contact.Phone}</div>
 							<div class="contact-info">Email: ${contact.Email}</div>
