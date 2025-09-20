@@ -67,7 +67,7 @@ h1 {
   align-items: center;
 }
 
-.field span {
+.field label {
   padding-right: 1vw;
   font-size: 1.5vw;
   white-space: nowrap;
@@ -195,7 +195,7 @@ h1 {
     align-items: center !important;
   }
 
-  .field span {
+  .field label {
     padding-right: 1vh;
     font-size: 2vh;
   }
