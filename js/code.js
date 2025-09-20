@@ -34,6 +34,7 @@ function doLogin()
 			{
 				let jsonObject = JSON.parse( xhr.responseText );
 				userId = jsonObject.id;
+				localStorage.setItem('userId', userId);
 		
 				if( userId < 1 )
 				{		
@@ -69,6 +70,7 @@ function saveCookie()
 function doLogout()
 {
 	userId = 0;
+	localStorage.setItem('userId', userId);
 	firstName = "";
 	lastName = "";
 	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
@@ -141,6 +143,7 @@ function doRegister()
 					{
 						let jsonObject = JSON.parse( xhr.responseText );
 						userId = jsonObject.id;
+						localStorage.setItem('userId', userId);
 				
 						document.getElementById("signupResult").innerHTML = "User added";
 				
