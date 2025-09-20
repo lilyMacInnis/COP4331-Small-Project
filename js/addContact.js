@@ -182,7 +182,7 @@ function handleServerFieldError(field, message) {
 function getUserId() {
     const userId = localStorage.getItem('userId');
     
-    if (!userId) {
+    if (!userId || userId < 1) {
         alert('You must be logged in to add contacts.');
         window.location.href = 'login.html';
         return null;
