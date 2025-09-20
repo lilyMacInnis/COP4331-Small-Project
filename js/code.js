@@ -285,6 +285,11 @@ function searchContacts()
             				bookImg.style.backgroundImage = 'url("../images/book2.png")';
 						};
 
+						card.addEventListener('click', function() {
+							window.location.href = 'updateContact.html';
+							//window.location.href = 'updateContact.html?id=' + contact.id;
+						});
+
 						count++;
 
 						resultsDiv.appendChild(card);
