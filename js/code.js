@@ -241,9 +241,11 @@ function searchContacts()
 	// Clear previous results and errors
 	errorMsg.textContent = "";
 	resultsDiv.innerHTML = "";
+	defaultMsg.style.display = "flex";
 
 	if (searchTerm === "") {
 		errorMsg.textContent = "Please enter a name to search.";
+		defaultMsg.style.display = "none";
 		return;
 	}
 
@@ -277,6 +279,7 @@ function searchContacts()
 
 				if(jsonObject.error && jsonObject.error != ''){
 					errorMsg.textContent = jsonObject.error;
+					defaultMsg.style.display = "none";
 				}
 
 				if(jsonObject.results.length > 0){
