@@ -240,13 +240,19 @@ function searchContacts()
 	errorMsg.textContent = "";
 	resultsDiv.innerHTML = "";
 
-	if (!searchTerm) {
+	if (searchTerm.trim() === "") {
 		errorMsg.textContent = "Please enter a name to search.";
 		return;
 	}
 
 	// Example userId (replace with real value from login or localStorage)
-	const userId = localStorage.getItem("userId") || 1;
+	const userId = localStorage.getItem("userId");
+
+	if(userId < 1){
+		errorMsg.textContent = "Please log in.";
+		window.location.href = 'login.html';
+		return;
+	}
 
 	const payload = {
 		search: searchTerm,
