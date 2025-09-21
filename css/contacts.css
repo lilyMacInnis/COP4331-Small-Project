@@ -49,6 +49,26 @@ header {
   justify-content: center;
 }
 
+#addBtn {
+  background-color: #4f6b45;
+  color: #eae3d0;
+  border: none;
+  border-radius: 5px;
+  font-size: 2vw;
+  padding: 0.3vw;
+  position: fixed;
+  bottom: 1.5vw;
+  right: 1.5vw;
+  z-index: 1000;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+#addBtn:hover {
+  background-color: #86915b;
+  transform: scale(1.05);
+}
+
 .book-card {
   width: 200px;
   background-color: white;
