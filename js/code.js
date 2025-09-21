@@ -236,11 +236,13 @@ function searchContacts()
 	const errorMsg = document.getElementById("errorMsg");
 	const resultsDiv = document.getElementById("results");
 
+	let defaultMsg = document.getElementById("default");
+
 	// Clear previous results and errors
 	errorMsg.textContent = "";
 	resultsDiv.innerHTML = "";
 
-	if (searchTerm.trim() === "") {
+	if (searchTerm === "") {
 		errorMsg.textContent = "Please enter a name to search.";
 		return;
 	}
@@ -276,6 +278,7 @@ function searchContacts()
 				if(jsonObject.results.length > 0){
 					let count = 1;
 					jsonObject.results.forEach(contact => {
+						defaultMsg.style.display = "none";
 						const card = document.createElement("div");
 						card.className = "book-card";
 
@@ -300,8 +303,10 @@ function searchContacts()
 
 						resultsDiv.appendChild(card);
 					});
-				} else{
-					errorMsg.textContent = "No contacts found.";
+				}
+
+				if(jsonObject.error && jsonObject.error != ''){
+					errorMsg.textContent = jsonObject.error;
 				}
             }
         }

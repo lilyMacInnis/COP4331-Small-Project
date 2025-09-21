@@ -19,16 +19,20 @@
   </div>
   <header>
     <h1>📚 Contact Library</h1>
-    <p>Search Author by First or Last Name</p>
+    <p>Search Contact by First or Last Name, Phone, or Email</p>
   </header>
 
   <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Enter contact name..." />
+    <input type="text" id="searchInput" placeholder="Enter contact details..." />
     <button id="searchBtn" onclick="searchContacts();">Search</button>
   </div>
 
   <div id="errorMsg"></div>
   <div id="results"></div>
+
+  <div id="default">Search to see Contacts</div>
+
+  <div id="noContactsMsg" style="display: none;">No Contacts Found</div>
 
   <button id="addBtn" onclick="window.location.href='addContact.html'">New +</button>
 </body>
