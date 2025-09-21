@@ -169,7 +169,7 @@ function checkUserExists (user, callback){
 	let retVal = false;
 	let tmp = {login: user};
 	let jsonPayload = JSON.stringify(tmp);
-	let url = urlBase + '/SearchUsername' + extension;
+	let url = urlBase + '/SearchUsername.' + extension;
 
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
