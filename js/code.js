@@ -275,6 +275,10 @@ function searchContacts()
             if(this.readyState == 4 && this.status == 200){
                 let jsonObject = JSON.parse( xhr.responseText );
 
+				if(jsonObject.error && jsonObject.error != ''){
+					errorMsg.textContent = jsonObject.error;
+				}
+
 				if(jsonObject.results.length > 0){
 					let count = 1;
 					jsonObject.results.forEach(contact => {
@@ -303,10 +307,6 @@ function searchContacts()
 
 						resultsDiv.appendChild(card);
 					});
-				}
-
-				if(jsonObject.error && jsonObject.error != ''){
-					errorMsg.textContent = jsonObject.error;
 				}
             }
         }
