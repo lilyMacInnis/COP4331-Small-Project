@@ -1,12 +1,278 @@
-<!DOCTYPE html> 
- <html lang="en"></html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Library - Update Contact</title>
-    <link rel="stylesheet" href="css/navbar.css"/>
-    <!-- links to update css and js here-->
-  </head>
-  <body>
-    Update Contact
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Library - Update Contact</title>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <!-- links to update css and js here-->
+</head>
+<body>
+  <!-- Navigation bar at the top -->
+  <div class="navbar">
+    <a href="contacts.html"><img class="logo" src="images/book1.png" alt="logo"/></a>
+    <div>
+      <a href="contacts.html" class="navButtons">Back to Contacts</a>
+      <button onclick="signOut();" class="navButtons">Sign out</button>
+    </div>
+  </div>
+
+  <!-- Page title -->
+  <header>
+    <h1>Update Contact</h1>
+    <p>Change the contact information below</p>
+  </header>
+
+  <!-- This is where we show success or error messages -->
+  <div id="messages"></div>
+  
+  <!-- Shows the current contact info before editing -->
+  <div id="currentContact" style="display: none;">
+    <h3>Current Information:</h3>
+    <div id="contactDisplay"></div>
+    <br>
+  </div>
+
+  <!-- The form where users edit contact information -->
+  <form id="editForm">
+    <div>
+      <label for="firstName">First Name:</label><br>
+      <input type="text" id="firstName" name="firstName" required>
+    </div>
+    <br>
+
+    <div>
+      <label for="lastName">Last Name:</label><br>
+      <input type="text" id="lastName" name="lastName" required>
+    </div>
+    <br>
+
+    <div>
+      <label for="phone">Phone Number:</label><br>
+      <input type="tel" id="phone" name="phone" required>
+    </div>
+    <br>
+
+    <div>
+      <label for="email">Email Address:</label><br>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <br>
+
+    <!-- Action buttons -->
+    <div>
+      <button type="submit">Save Changes</button>
+      <a href="contacts.html">Cancel</a>
+      <button type="button" onclick="askToDeleteContact()">Delete This Contact</button>
+    </div>
+  </form>
+
+  <!-- Load your existing JavaScript files -->
+  <script type="text/javascript" src="js/md5.js"></script>
+  <script type="text/javascript" src="js/code.js"></script>
+  
+  <script>
+    // These are the same settings you use in your other files
+    const serverURL = 'http://cop4331projectdomain.xyz/LAMPAPI';
+    const fileType = 'php';
+
+    // Variables to remember the contact we're editing
+    let contactId = null;
+    let userId = null;
+
+    // When the page loads, get the contact information
+    window.onload = function() {
+      getContactToEdit();
+    };
+
+    // This function gets the contact data that was saved when user clicked "Edit"
+    function getContactToEdit() {
+      // Get the contact information from browser storage
+      contactId = localStorage.getItem('editContactId');
+      userId = localStorage.getItem('userId');
+      
+      let firstName = localStorage.getItem('editFirstName');
+      let lastName = localStorage.getItem('editLastName');
+      let phone = localStorage.getItem('editPhone');
+      let email = localStorage.getItem('editEmail');
+
+      // Check if we have contact data
+      if (!contactId || !firstName) {
+        showMessage('No contact was selected. Please go back and choose a contact to edit.', 'red');
+        return;
+      }
+
+      // Fill in the form with the current information
+      document.getElementById('firstName').value = firstName;
+      document.getElementById('lastName').value = lastName;
+      document.getElementById('phone').value = phone;
+      document.getElementById('email').value = email;
+
+      // Show the current contact information
+      document.getElementById('currentContact').style.display = 'block';
+      document.getElementById('contactDisplay').innerHTML = 
+        '<strong>' + firstName + ' ' + lastName + '</strong><br>' +
+        'Phone: ' + phone + '<br>' +
+        'Email: ' + email;
+
+      // Clean up the stored data (we don't need it anymore)
+      removeStoredContactData();
+    }
+
+    // Remove the temporary contact data from browser storage
+    function removeStoredContactData() {
+      localStorage.removeItem('editContactId');
+      localStorage.removeItem('editFirstName');
+      localStorage.removeItem('editLastName');
+      localStorage.removeItem('editPhone');
+      localStorage.removeItem('editEmail');
+    }
+
+    // When user submits the form, save the changes
+    document.getElementById('editForm').onsubmit = function(event) {
+      event.preventDefault(); // Don't reload the page
+      saveContactChanges();
+    };
+
+    // This function saves the updated contact information
+    function saveContactChanges() {
+      // Make sure we have a contact to update
+      if (!contactId) {
+        showMessage('Error: No contact selected to update.', 'red');
+        return;
+      }
+
+      // Get the new information from the form
+      let newFirstName = document.getElementById('firstName').value.trim();
+      let newLastName = document.getElementById('lastName').value.trim();
+      let newPhone = document.getElementById('phone').value.trim();
+      let newEmail = document.getElementById('email').value.trim();
+
+      // Make sure all fields are filled in
+      if (!newFirstName || !newLastName || !newPhone || !newEmail) {
+        showMessage('Please fill in all the fields.', 'red');
+        return;
+      }
+
+      // Prepare the data to send to the server
+      let contactData = {
+        id: contactId,
+        firstName: newFirstName,
+        lastName: newLastName,
+        phone: newPhone,
+        email: newEmail,
+        userId: userId
+      };
+
+      // Convert to the format the server expects
+      let dataToSend = JSON.stringify(contactData);
+      let serverAddress = serverURL + '/UpdateContact.' + fileType;
+
+      // Create a new request to the server
+      let request = new XMLHttpRequest();
+      request.open("POST", serverAddress, true);
+      request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+      // What to do when we get a response from the server
+      request.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          let response = JSON.parse(this.responseText);
+          
+          // Check if there was an error
+          if (response.error && response.error !== "") {
+            showMessage('Could not update contact: ' + response.error, 'red');
+          } else {
+            showMessage('Contact updated successfully!', 'green');
+            // Go back to the contacts page after 2 seconds
+            setTimeout(function() {
+              window.location.href = 'contacts.html';
+            }, 2000);
+          }
+        }
+      };
+
+      // Send the request
+      try {
+        request.send(dataToSend);
+      } catch (error) {
+        showMessage('Error updating contact: ' + error.message, 'red');
+      }
+    }
+
+    // Ask user if they really want to delete the contact
+    function askToDeleteContact() {
+      if (!contactId) {
+        showMessage('No contact selected to delete.', 'red');
+        return;
+      }
+
+      let firstName = document.getElementById('firstName').value;
+      let lastName = document.getElementById('lastName').value;
+      let fullName = firstName + ' ' + lastName;
+
+      // Show confirmation dialog
+      let userConfirmed = confirm('Are you sure you want to delete ' + fullName + '? This cannot be undone.');
+      
+      if (userConfirmed) {
+        removeContact(firstName, lastName, userId);
+      }
+    }
+
+    // This function deletes the contact
+    function removeContact(firstName, lastName, userId) {
+      // Prepare the data to send to the server
+      let deleteData = {
+        FirstName: firstName,
+        LastName: lastName,
+        UserID: userId
+      };
+
+      let dataToSend = JSON.stringify(deleteData);
+      let serverAddress = serverURL + '/DeleteContact.' + fileType;
+
+      // Create a new request to the server
+      let request = new XMLHttpRequest();
+      request.open("POST", serverAddress, true);
+      request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+      // What to do when we get a response from the server
+      request.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          showMessage('Contact deleted successfully!', 'green');
+          // Go back to the contacts page after 2 seconds
+          setTimeout(function() {
+            window.location.href = 'contacts.html';
+          }, 2000);
+        }
+      };
+
+      // Send the request
+      try {
+        request.send(dataToSend);
+      } catch (error) {
+        showMessage('Error deleting contact: ' + error.message, 'red');
+      }
+    }
+
+    // This function shows messages to the user
+    function showMessage(message, color) {
+      let messageArea = document.getElementById('messages');
+      messageArea.innerHTML = '<div style="color: ' + color + '; font-weight: bold;">' + message + '</div>';
+      
+      // Hide success messages after 5 seconds
+      if (color === 'green') {
+        setTimeout(function() {
+          messageArea.innerHTML = '';
+        }, 5000);
+      }
+    }
+
+    // Sign out function (simpler name)
+    function signOut() {
+      localStorage.setItem('userId', 0);
+      document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
 </html>
