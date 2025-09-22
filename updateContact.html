@@ -36,7 +36,6 @@
   <div class="navbar">
     <a href="contacts.html"><img class="logo" src="images/book1.png" alt="logo"/></a>
     <div>
-      <a href="contacts.html" class="navButtons">Back to Contacts</a>
       <button onclick="doLogout();" class="navButtons">Sign out</button>
     </div>
   </div>
@@ -230,10 +229,10 @@
         // Use the deleteContact function from code.js
         deleteContact(firstName, lastName, currentUserId);
         showMessage('Contact deleted successfully!', 'green');
-        // Go back to the contacts page after 2 seconds
+        // Go back to the contacts page after 1 seconds
         setTimeout(function() {
           window.location.href = 'contacts.html';
-        }, 2000);
+        }, 1000);
       }
     }
 
