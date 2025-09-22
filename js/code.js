@@ -259,10 +259,14 @@ function searchContacts()
 						const card = document.createElement("div");
 						card.className = "book-card";
 
+						//formats phone number
+						let formattedPhoneNum = contact.Phone.toString().replace(/\D/g, '');
+						formattedPhoneNum = `(${formattedPhoneNum.slice(0, 3)}) ${formattedPhoneNum.slice(3, 6)}-${formattedPhoneNum.slice(6)}`;
+
 						card.innerHTML = `
 							<div class="book-img"></div>
 							<div class="contact-name">${contact.FirstName} ${contact.LastName}</div>
-							<div class="contact-info">Phone: ${contact.Phone}</div>
+							<div class="contact-info">Phone: ${formattedPhoneNum}</div>
 							<div class="contact-info">Email: ${contact.Email}</div>
 						`;
 

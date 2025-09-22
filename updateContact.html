@@ -7,6 +7,29 @@
   <title>Contact Library - Update Contact</title>
   <link rel="stylesheet" href="css/navbar.css"/>
   <link rel="stylesheet" href="css/addContact.css"/>
+  <link rel="stylesheet" href="css/register.css"/>
+
+  <style>
+    .deleteButton {
+      border: none;
+      background: none;
+    }
+
+    .delIcon {
+      height: 50px;
+      transition: transform 0.2s ease;
+    }
+
+    .delIcon:hover {
+      transform: scale(1.05);
+      opacity: 60%;
+    }
+
+    .field input{
+      font-size: 16px;
+      padding: 10px;
+    }
+  </style>
 </head>
 <body>
   <!-- Navigation bar at the top -->
@@ -17,21 +40,14 @@
       <button onclick="doLogout();" class="navButtons">Sign out</button>
     </div>
   </div>
-
-  <!-- This is where we show success or error messages -->
-  <div id="messages"></div>
   
-  <!-- Shows the current contact info before editing -->
-  <div id="currentContact" style="display: none;">
-    <h3>Current Information:</h3>
-    <div id="contactDisplay"></div>
-  </div>
 
   <!-- The form container with styling -->
   <div class="form-container">
     <!-- Page title -->
     <h1>Update Contact</h1>
     <p style="text-align: center; color: #34000b; margin-bottom: 25px;">Change the contact information below</p>
+    <div id="messages"></div>
 
     <!-- The form where users edit contact information -->
     <form id="editForm">
@@ -59,7 +75,7 @@
       <div class="button-group">
         <button type="submit" class="createButton">Save Changes</button>
         <a href="contacts.html" class="cancelButton" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">Cancel</a>
-        <button type="button" class="deleteButton" onclick="askToDeleteContact()">Delete Contact</button>
+        <button type="button" class="deleteButton" onclick="askToDeleteContact()"><img class="delIcon" src="images/deleteIcon.png" alt="delete icon"/></button>
       </div>
     </form>
   </div>
