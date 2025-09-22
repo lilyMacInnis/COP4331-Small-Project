@@ -281,7 +281,9 @@ function searchContacts()
 							localStorage.setItem('editEmail', contact.Email);
 							
 							// Navigate to update page
-							window.location.href = 'updateContact.html';
+							setTimeout(() => {
+								window.location.href = 'updateContact.html';
+							}, 10);
 						});
 
 						count++;

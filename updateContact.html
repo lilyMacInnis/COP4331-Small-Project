@@ -169,30 +169,57 @@
       request.open("POST", serverAddress, true);
       request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-      // What to do when we get a response from the server
-      request.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          let response = JSON.parse(this.responseText);
-          
-          // Check if there was an error
-          if (response.error && response.error !== "") {
-            showMessage('Could not update contact: ' + response.error, 'red');
-          } else {
-            showMessage('Contact updated successfully!', 'green');
-            // Go back to the contacts page after 2 seconds
-            setTimeout(function() {
-              window.location.href = 'contacts.html';
-            }, 2000);
+			try
+			{
+				request.onreadystatechange = function() 
+				{
+					if (this.readyState == 4 && this.status == 200) 
+					{
+						let response = JSON.parse( request.responseText );
+						userId = jsonObject.id;
+					
+            if (response.error && response.error !== "") {
+              showMessage('Could not update contact: ' + response.error, 'red');
+            } else {
+              showMessage('Contact updated successfully!', 'green');
+              // Go back to the contacts page after 2 seconds
+              setTimeout(function() {
+                window.location.href = 'contacts.html';
+              }, 1000);
+            }
           }
-        }
-      };
+				};
+				request.send(dataToSend);
+			}
+			catch(error)
+			{
+				showMessage('Error updating contact: ' + error.message, 'red');
+			}
 
-      // Send the request
-      try {
-        request.send(dataToSend);
-      } catch (error) {
-        showMessage('Error updating contact: ' + error.message, 'red');
-      }
+      // // What to do when we get a response from the server
+      // request.onreadystatechange = function() {
+      //   if (this.readyState == 4 && this.status == 200) {
+      //     let response = JSON.parse(this.responseText);
+          
+      //     // Check if there was an error
+      //     if (response.error && response.error !== "") {
+      //       showMessage('Could not update contact: ' + response.error, 'red');
+      //     } else {
+      //       showMessage('Contact updated successfully!', 'green');
+      //       // Go back to the contacts page after 2 seconds
+      //       setTimeout(function() {
+      //         window.location.href = 'contacts.html';
+      //       }, 1000);
+      //     }
+      //   }
+      // };
+
+      // // Send the request
+      // try {
+      //   request.send(dataToSend);
+      // } catch (error) {
+      //   showMessage('Error updating contact: ' + error.message, 'red');
+      // }
     }
 
     // Ask user if they really want to delete the contact
