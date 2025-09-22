@@ -77,34 +77,6 @@ function doLogout()
 	window.location.href = "index.html";
 }
 
-// function searchContacts() {
-//     const content = document.getElementById("searchText");
-//     const selections = content.value.toUpperCase().split(' ');
-//     const table = document.getElementById("contacts");
-//     const tr = table.getElementsByTagName("tr");// Table Row
-
-//     for (let i = 0; i < tr.length; i++) {
-//         const td_fn = tr[i].getElementsByTagName("td")[0];// Table Data: First Name
-//         const td_ln = tr[i].getElementsByTagName("td")[1];// Table Data: Last Name
-
-//         if (td_fn && td_ln) {
-//             const txtValue_fn = td_fn.textContent || td_fn.innerText;
-//             const txtValue_ln = td_ln.textContent || td_ln.innerText;
-//             tr[i].style.display = "none";
-
-//             for (selection of selections) {
-//                 if (txtValue_fn.toUpperCase().indexOf(selection) > -1) {
-//                     tr[i].style.display = "";
-//                 }
-//                 if (txtValue_ln.toUpperCase().indexOf(selection) > -1) {
-//                     tr[i].style.display = "";
-//                 }
-//             }
-//         }
-//     }
-// }
-
-
 function doRegister()
 {
     userId = 0;
@@ -226,8 +198,6 @@ function deleteContact(fName, lName, id){
     } catch(err){
         console.log("Error in delete: "+ err.message);
     }
-
-
 }
 
 function searchContacts()
@@ -249,7 +219,7 @@ function searchContacts()
 		return;
 	}
 
-	// Example userId (replace with real value from login or localStorage)
+	// Get userId from localStorage 
 	const userId = localStorage.getItem("userId");
 
 	if(userId < 1){
@@ -301,9 +271,17 @@ function searchContacts()
             				bookImg.style.backgroundImage = 'url("../images/book2.png")';
 						};
 
+						// FIXED: Store contact data when clicked and navigate to edit page
 						card.addEventListener('click', function() {
+							// Store the contact data for editing
+							localStorage.setItem('editContactId', contact.ID || contact.id);
+							localStorage.setItem('editFirstName', contact.FirstName);
+							localStorage.setItem('editLastName', contact.LastName);
+							localStorage.setItem('editPhone', contact.Phone);
+							localStorage.setItem('editEmail', contact.Email);
+							
+							// Navigate to update page
 							window.location.href = 'updateContact.html';
-							//window.location.href = 'updateContact.html?id=' + contact.id;
 						});
 
 						count++;
@@ -318,38 +296,4 @@ function searchContacts()
         console.error("Error in search:", error.message);
 		errorMsg.textContent = "An error occurred while fetching contacts.";
     }
-
-	// fetch(url, {
-	// method: "POST",
-	// headers: {
-	// 	"Content-Type": "application/json"
-	// },
-	// body: JSON.stringify(payload)
-	// })
-	// .then(response => response.json())
-	// .then(data => {
-	// if (data.error && data.error !== "") {
-	// 	errorMsg.textContent = data.error;
-	// } else if (data.results && data.results.length > 0) {
-	// 	data.results.forEach(contact => {
-	// 	const card = document.createElement("div");
-	// 	card.className = "book-card";
-
-	// 	card.innerHTML = `
-	// 		<div class="book-img"></div>
-	// 		<div class="contact-name">${contact.FirstName} ${contact.LastName}</div>
-	// 		<div class="contact-info">Phone: ${contact.Phone}</div>
-	// 		<div class="contact-info">Email: ${contact.Email}</div>
-	// 	`;
-
-	// 	resultsDiv.appendChild(card);
-	// 	});
-	// } else {
-	// 	errorMsg.textContent = "No contacts found.";
-	// }
-	// })
-	// .catch(error => {
-	// console.error("Error:", error);
-	// errorMsg.textContent = "An error occurred while fetching contacts.";
-	// });
 }
