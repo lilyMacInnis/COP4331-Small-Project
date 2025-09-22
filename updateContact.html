@@ -176,7 +176,6 @@
 					if (this.readyState == 4 && this.status == 200) 
 					{
 						let response = JSON.parse( request.responseText );
-						userId = jsonObject.id;
 					
             if (response.error && response.error !== "") {
               showMessage('Could not update contact: ' + response.error, 'red');
