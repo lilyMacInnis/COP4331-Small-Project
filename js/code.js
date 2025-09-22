@@ -261,7 +261,9 @@ function searchContacts()
 
 						//formats phone number
 						let formattedPhoneNum = contact.Phone.toString().replace(/\D/g, '');
+						console.log("contact.Phone: " + contact.Phone + "\nformattedPhoneNum: " + formattedPhoneNum);
 						formattedPhoneNum = `(${formattedPhoneNum.slice(0, 3)}) ${formattedPhoneNum.slice(3, 6)}-${formattedPhoneNum.slice(6)}`;
+						console.log("contact.Phone: " + contact.Phone + "\nformattedPhoneNum: " + formattedPhoneNum);
 
 						card.innerHTML = `
 							<div class="book-img"></div>
