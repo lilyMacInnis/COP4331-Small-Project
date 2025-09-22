@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Library - Update Contact</title>
   <link rel="stylesheet" href="css/navbar.css"/>
-  <!-- links to update css and js here-->
+  <link rel="stylesheet" href="css/addContact.css"/>
 </head>
 <body>
   <!-- Navigation bar at the top -->
@@ -17,12 +17,6 @@
     </div>
   </div>
 
-  <!-- Page title -->
-  <header>
-    <h1>Update Contact</h1>
-    <p>Change the contact information below</p>
-  </header>
-
   <!-- This is where we show success or error messages -->
   <div id="messages"></div>
   
@@ -30,42 +24,44 @@
   <div id="currentContact" style="display: none;">
     <h3>Current Information:</h3>
     <div id="contactDisplay"></div>
-    <br>
   </div>
 
-  <!-- The form where users edit contact information -->
-  <form id="editForm">
-    <div>
-      <label for="firstName">First Name:</label><br>
-      <input type="text" id="firstName" name="firstName" required>
-    </div>
-    <br>
+  <!-- The form container with styling -->
+  <div class="form-container">
+    <!-- Page title -->
+    <h1>Update Contact</h1>
+    <p style="text-align: center; color: #34000b; margin-bottom: 25px;">Change the contact information below</p>
 
-    <div>
-      <label for="lastName">Last Name:</label><br>
-      <input type="text" id="lastName" name="lastName" required>
-    </div>
-    <br>
+    <!-- The form where users edit contact information -->
+    <form id="editForm">
+      <div class="field">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required>
+      </div>
 
-    <div>
-      <label for="phone">Phone Number:</label><br>
-      <input type="tel" id="phone" name="phone" required>
-    </div>
-    <br>
+      <div class="field">
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required>
+      </div>
 
-    <div>
-      <label for="email">Email Address:</label><br>
-      <input type="email" id="email" name="email" required>
-    </div>
-    <br>
+      <div class="field">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+      </div>
 
-    <!-- Action buttons -->
-    <div>
-      <button type="submit">Save Changes</button>
-      <a href="contacts.html">Cancel</a>
-      <button type="button" onclick="askToDeleteContact()">Delete This Contact</button>
-    </div>
-  </form>
+      <div class="field">
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="button-group">
+        <button type="submit" class="createButton">Save Changes</button>
+        <a href="contacts.html" class="cancelButton" style="text-decoration: none; display: flex; align-items: center; justify-content: center;">Cancel</a>
+        <button type="button" class="deleteButton" onclick="askToDeleteContact()">Delete Contact</button>
+      </div>
+    </form>
+  </div>
 
   <!-- Load your existing JavaScript files -->
   <script type="text/javascript" src="js/md5.js"></script>
