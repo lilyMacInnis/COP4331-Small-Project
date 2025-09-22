@@ -185,28 +185,42 @@ function changeBgForMobile() {
 window.addEventListener('load', changeBgForMobile);
 window.addEventListener('resize', changeBgForMobile);
 
-// Add real-time validation on blur
-document.getElementById('createFnameInput').addEventListener('blur', () => {
-    validateField('createFname', 'createFnameInput', 'fnRequirement', 
-        (value) => value.length > 0, '*First name must include at least 1 character.');
-});
+document.addEventListener('DOMContentLoaded', function() {
+    // Add real-time validation on blur
+    const fnameInput = document.getElementById('createFnameInput');
+    if (fnameInput) {
+        fnameInput.addEventListener('blur', () => {
+            validateField('createFname', 'createFnameInput', 'fnRequirement', 
+                (value) => value.length > 0, '*First name must include at least 1 character.');
+        });
+    }
 
-document.getElementById('createLnameInput').addEventListener('blur', () => {
-    validateField('createLname', 'createLnameInput', 'lnRequirement', 
-        (value) => value.length > 0, '*Last name must include at least 1 character.');
-});
+    const lnameInput = document.getElementById('createLnameInput');
+    if (lnameInput) {
+        lnameInput.addEventListener('blur', () => {
+            validateField('createLname', 'createLnameInput', 'lnRequirement', 
+                (value) => value.length > 0, '*Last name must include at least 1 character.');
+        });
+    }
 
-document.getElementById('createEmailInput').addEventListener('blur', () => {
-    validateField('createEmail', 'createEmailInput', 'emRequirement', 
-        (value) => emailRegex.test(value), '*Please enter a valid email address.');
-});
+    const emailInput = document.getElementById('createEmailInput');
+    if (emailInput) {
+        emailInput.addEventListener('blur', () => {
+            validateField('createEmail', 'createEmailInput', 'emRequirement', 
+                (value) => emailRegex.test(value), '*Please enter a valid email address.');
+        });
+    }
 
-document.getElementById('createPhoneInput').addEventListener('blur', () => {
-    validateField('createPhone', 'createPhoneInput', 'phoneRequirement', 
-        (value) => {
-            const cleanPhone = value.replace(/[\s\-\(\)]/g, '');
-            return cleanPhone.length >= 10 && cleanPhone.length <= 15 && /^\d+$/.test(cleanPhone);
-        }, '*Please enter a valid phone number (10-15 digits).');
+    const phoneInput = document.getElementById('createPhoneInput');
+    if (phoneInput) {
+        phoneInput.addEventListener('blur', () => {
+            validateField('createPhone', 'createPhoneInput', 'phoneRequirement', 
+                (value) => {
+                    const cleanPhone = value.replace(/[\s\-\(\)]/g, '');
+                    return cleanPhone.length >= 10 && cleanPhone.length <= 15 && /^\d+$/.test(cleanPhone);
+                }, '*Please enter a valid phone number (10-15 digits).');
+        });
+    }
 });
 
 function doLogout()
