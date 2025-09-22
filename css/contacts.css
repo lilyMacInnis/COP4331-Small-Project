@@ -77,8 +77,8 @@ header {
 #default {
   display: flex;
   justify-content: center;
-  font-size: 5vw;
-  color: #d8cdb8;
+  font-size: 1.5vw;
+  color: #6c3c30;
 }
 
 .book-card {
