@@ -170,36 +170,6 @@ function checkUserExists (user, callback){
 
 }
 
-function deleteContact(fName, lName, id){
-    let tmp = {
-        FirstName: fName,
-        LastName: lName,
-        UserID: id
-    };
-
-    let jsonPayload = JSON.stringify(tmp);
-
-    console.log("Contact being deleted: " + jsonPayload);
-
-    let url = urlBase + '/DeleteContact.' + extension;
-
-    let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-    try{
-        xhr.onreadystatechange = function()
-        {
-            if(this.readyState == 4 && this.status == 200){
-                console.log("Deleted");
-            }
-        }
-        xhr.send(jsonPayload);
-    } catch(err){
-        console.log("Error in delete: "+ err.message);
-    }
-}
-
 function searchContacts()
 {
 	const searchTerm = document.getElementById("searchInput").value.trim();
